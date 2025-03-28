@@ -1,12 +1,14 @@
 import os
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, UploadFile, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import uvicorn
+import tempfile
 
 # Import models
-from models import (
+from services.models import (
     StockAnalysisRequest,
     FeedbackRequest,
     VoiceTranscriptionRequest,
@@ -18,7 +20,8 @@ from models import (
 from services.stock_analysis import StockAnalysisService
 from services.voice_interaction import VoiceInteractionService
 from services.report_generator import ReportGeneratorService
-from utils.feedback import FeedbackService
+from services.feedback import FeedbackService
+
 
 # Load environment variables
 load_dotenv()
@@ -29,6 +32,8 @@ app = FastAPI(
     description="Comprehensive stock analysis and financial insights API",
     version="1.0.0"
 )
+app.mount("/templates/assets",
+          StaticFiles(directory="templates/assets"), name="assets")
 
 # Add CORS middleware
 app.add_middleware(
@@ -48,6 +53,12 @@ report_generator_service = ReportGeneratorService(
     api_key=os.getenv('GEMINI_API_KEY', '')
 )
 feedback_service = FeedbackService()
+
+
+@app.get("/", response_class=HTMLResponse)
+async def get_form():
+    with open("templates/index.html") as f:
+        return HTMLResponse(content=f.read())
 
 
 @app.post("/analyze-stock")

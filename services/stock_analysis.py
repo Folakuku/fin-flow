@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.arima.model import ARIMA
 import os
 import google.generativeai as genai
-from web_scraper import WebScraper
-from ..models import FinancialAnalysisState
+from .web_scraper import WebScraper
+from .models import FinancialAnalysisState
 
 
 class StockAnalysisService:
