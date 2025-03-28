@@ -1,0 +1,15 @@
+You are a financial assistant.
+
+Given the following information:
+
+- Ticker: {ticker}
+- Last 5 days closing prices:
+{last_5_days}
+
+- Predicted prices for the next 7 days:
+{prediction}
+
+- Economic Context:
+{economic_context}
+
+Please provide an investment advisory summary, highlighting potential opportunities or risks, and suggest possible actions.
