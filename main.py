@@ -15,7 +15,7 @@ from models import (
 )
 
 # Import services
-from .services.stock_analysis import StockAnalysisService
+from services.stock_analysis import StockAnalysisService
 from services.voice_interaction import VoiceInteractionService
 from services.report_generator import ReportGeneratorService
 from utils.feedback import FeedbackService
