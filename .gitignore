@@ -1,4 +1,29 @@
-venv
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python bytecode and cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# Sensitive files
 .env
-__pycache__
-.gradio
+
+# Generated output files
+*_prediction.png
+
+# IDE/editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# macOS system files
+.DS_Store
+
+# Logs and temp files
+*.log
+*.tmp
