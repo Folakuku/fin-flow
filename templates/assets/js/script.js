@@ -18,10 +18,16 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
   const stockInput = document.getElementById("stock-input");
   const submitBtn = document.getElementById("submit-btn");
   const loading = document.getElementById("loading");
+
   const visualizationSection = document.getElementById(
     "data-visualization-section"
   );
   const visualizationImg = document.getElementById("data-visualization");
+
+  const analysisReportSection = document.getElementById(
+    "analysis-report-section"
+  );
+  const analysisReportDiv = document.getElementById("analysis-report");
 
   // Get the selected or typed stock
   const selectedStock = stockSelect.value.trim();
@@ -36,34 +42,34 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
   submitBtn.disabled = true;
   loading.style.display = "block";
 
-  //   visualizationImg.src = "/" + "visualizations/MSFT_forecast.png";
-  //   visualizationSection.style.display = "block";
-
   try {
     const response = await fetch("/analyze-stock", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ stock_symbol: stockSymbol }),
     });
 
     const data = await response.json();
     console.log("Analysis Response:", data);
+
+    // Display analysis report if available
+    if (data.analysis_report) {
+      analysisReportDiv.innerHTML = formatMarkdown(data.analysis_report);
+      analysisReportSection.style.display = "block";
+    }
+
+    // Fetch visualization image if available
     if (data.visualization_path) {
       const imageResponse = await fetch(
         `/visualizations/${encodeURIComponent(data.visualization_path)}`
       );
 
-      if (!imageResponse.ok) {
+      if (!imageResponse.ok)
         throw new Error("Failed to fetch visualization image");
-      }
 
-      // Convert response to a blob and create an object URL
       const imageBlob = await imageResponse.blob();
       const imageUrl = URL.createObjectURL(imageBlob);
 
-      // Set the image source and show the section
       visualizationImg.src = imageUrl;
       visualizationSection.style.display = "block";
     }
@@ -99,3 +105,11 @@ document
   .getElementById("stock-select")
   .addEventListener("change", validateInput);
 document.getElementById("stock-input").addEventListener("input", validateInput);
+
+// Function to format markdown-like text into HTML
+function formatMarkdown(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") // Bold
+    .replace(/\*(.*?)\*/g, "<em>$1</em>") // Italic
+    .replace(/\n/g, "<br>"); // Line Breaks
+}
