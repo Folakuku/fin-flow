@@ -200,8 +200,8 @@ async def get_visualization(filename: str):
     :return: Visualization image file
     """
     try:
-        # visualization_path = os.path.join('visualizations', filename)
-        visualization_path = filename
+        visualization_path = os.path.join('visualizations', filename)
+        # visualization_path = filename
 
         if not os.path.exists(visualization_path):
             raise HTTPException(

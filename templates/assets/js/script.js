@@ -60,8 +60,9 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
 
     // Fetch visualization image if available
     if (data.visualization_path) {
+      const imagePath = data.visualization_path.split("/").pop();
       const imageResponse = await fetch(
-        `/visualizations/${encodeURIComponent(data.visualization_path)}`
+        `/visualizations/${encodeURIComponent(imagePath)}`
       );
 
       if (!imageResponse.ok)
