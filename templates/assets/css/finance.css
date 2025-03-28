@@ -1,0 +1,90 @@
+/* ... (your existing finance.css styles) ... */
+
+/* Dynamic Text Styles */
+.dynamic-text-container {
+    width: 100%; /* Take full width of the card */
+    height: 50px; /* Adjust height as needed */
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px; /* Add some space below the moving text */
+}
+
+.dynamic-text {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0;
+    padding: 10px;
+    white-space: pre-wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation: moveUpDown 5s linear infinite;
+}
+
+@keyframes moveUpDown {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 20px; /* Adjust the distance of movement here */
+    }
+    100% {
+        top: 0;
+    }
+}
+
+/* White Amounts */
+.stock-price,
+.indicator-value,
+.ai-change {
+    color: white;
+}
+
+/* Arrow Indicators */
+.stock-change.up,
+.indicator-change.up,
+.ai-change.up {
+    color: green;
+}
+
+.stock-change.down,
+.indicator-change.down,
+.ai-change.down {
+    color: red;
+}
+/* ... (your existing finance.css styles) ... */
+
+/* Chart Background */
+#sampleChart {
+    background-color: white; /* Ensure the chart background is white */
+    padding: 10px; /* Add some padding around the chart */
+    border-radius: 10px;
+    cursor: pointer; /* Add a pointer cursor on hover */
+}
+/* ... (your existing finance.css styles) ... */
+
+/* Stock Dropdown */
+.dropdown-menu {
+    background-color: #222; /* Darker gray */
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #333;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Voice Control Buttons */
+#voice-controls .btn {
+    margin-right: 0.5rem;
+}
