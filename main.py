@@ -232,16 +232,16 @@ DEBUG=False
         f.write(env_content)
 
 
-# Main entry point
-if __name__ == "__main__":
-    # Create .env file if it doesn't exist
-    if not os.path.exists('.env'):
-        create_env_file()
+# # Main entry point
+# if __name__ == "__main__":
+#     # Create .env file if it doesn't exist
+#     if not os.path.exists('.env'):
+#         create_env_file()
 
-    # Run the application
-    uvicorn.run(
-        "main:app",
-        host=os.getenv('API_HOST', '0.0.0.0'),
-        port=int(os.getenv('API_PORT', 8000)),
-        reload=os.getenv('DEBUG', 'False') == 'True'
-    )
+#     # Run the application
+#     uvicorn.run(
+#         "main:app",
+#         host=os.getenv('API_HOST', '0.0.0.0'),
+#         port=int(os.getenv('API_PORT', 8000)),
+#         reload=os.getenv('DEBUG', 'False') == 'True'
+#     )

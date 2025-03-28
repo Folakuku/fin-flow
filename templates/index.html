@@ -99,20 +99,25 @@
         <section id="input-section" class="input-section mt-5">
             <form id="input-form" class="custom-form">
                 <div class="mb-3">
-                    <label for="description" class="form-label text-white">Place your request:</label>
-                    <textarea class="form-control" id="description" rows="5"
-                        placeholder="e.g., Analyze the potential of investing in renewable energy stocks, or generate a report on the performance of my portfolio."
-                        required></textarea>
-                    <button type="button" id="mic-btn" class="btn btn-secondary mt-2">
-                        <i class="bi bi-mic"></i> <span id="mic-text">Speak</span>
-                    </button>
-                    <!-- Voice Control Buttons -->
-                    <div id="request-voice-controls" class="mt-3">
-                        <button id="request-play-btn" class="btn btn-success"><i class="bi bi-play-fill"></i></button>
-                        <button id="request-pause-btn" class="btn btn-warning"><i class="bi bi-pause-fill"></i></button>
-                        <button id="request-ff-btn" class="btn btn-info"><i
-                                class="bi bi-fast-forward-fill"></i></button>
-                    </div>
+                    <label for="stock-select" class="form-label text-white">Select a Stock to Analyze:</label>
+                    <select class="form-control" id="stock-select" required>
+                        <option value="" disabled selected>Select a stock</option>
+                        <option value="AAPL">Apple (AAPL)</option>
+                        <option value="MSFT">Microsoft (MSFT)</option>
+                        <option value="GOOGL">Alphabet (GOOGL)</option>
+                        <option value="AMZN">Amazon (AMZN)</option>
+                        <option value="META">Meta (META)</option>
+                        <option value="TSLA">Tesla (TSLA)</option>
+                        <option value="NVDA">NVIDIA (NVDA)</option>
+                        <option value="JPM">JPMorgan Chase (JPM)</option>
+                        <option value="V">Visa (V)</option>
+                        <option value="WMT">Walmart (WMT)</option>
+                        <option value="JNJ">Johnson & Johnson (JNJ)</option>
+                        <option value="PG">Procter & Gamble (PG)</option>
+                        <option value="DIS">Disney (DIS)</option>
+                        <option value="NFLX">Netflix (NFLX)</option>
+                        <option value="INTC">Intel (INTC)</option>
+                    </select>
                 </div>
                 <button type="button" id="submit-btn" class="btn btn-primary">Analyze Report</button>
             </form>
@@ -121,6 +126,7 @@
                 <p class="loading-text">Analyzing...</p>
             </div>
         </section>
+
 
         <!-- 3D Viewer Section (Hidden - No longer needed for finance) -->
         <section id="viewer-section" class="mt-5" style="display: none;">
