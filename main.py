@@ -191,7 +191,7 @@ async def get_feedback_summary(stock_symbol: str = None):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/visualization/{filename}")
+@app.get("/visualizations/{filename}")
 async def get_visualization(filename: str):
     """
     Serve stock visualization image
@@ -200,7 +200,8 @@ async def get_visualization(filename: str):
     :return: Visualization image file
     """
     try:
-        visualization_path = os.path.join('visualizations', filename)
+        # visualization_path = os.path.join('visualizations', filename)
+        visualization_path = filename
 
         if not os.path.exists(visualization_path):
             raise HTTPException(

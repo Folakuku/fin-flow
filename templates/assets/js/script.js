@@ -18,6 +18,10 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
   const stockInput = document.getElementById("stock-input");
   const submitBtn = document.getElementById("submit-btn");
   const loading = document.getElementById("loading");
+  const visualizationSection = document.getElementById(
+    "data-visualization-section"
+  );
+  const visualizationImg = document.getElementById("data-visualization");
 
   // Get the selected or typed stock
   const selectedStock = stockSelect.value.trim();
@@ -32,6 +36,9 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
   submitBtn.disabled = true;
   loading.style.display = "block";
 
+  //   visualizationImg.src = "/" + "visualizations/MSFT_forecast.png";
+  //   visualizationSection.style.display = "block";
+
   try {
     const response = await fetch("/analyze-stock", {
       method: "POST",
@@ -43,6 +50,23 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
 
     const data = await response.json();
     console.log("Analysis Response:", data);
+    if (data.visualization_path) {
+      const imageResponse = await fetch(
+        `/visualizations/${encodeURIComponent(data.visualization_path)}`
+      );
+
+      if (!imageResponse.ok) {
+        throw new Error("Failed to fetch visualization image");
+      }
+
+      // Convert response to a blob and create an object URL
+      const imageBlob = await imageResponse.blob();
+      const imageUrl = URL.createObjectURL(imageBlob);
+
+      // Set the image source and show the section
+      visualizationImg.src = imageUrl;
+      visualizationSection.style.display = "block";
+    }
   } catch (error) {
     console.error("Error analyzing stock:", error);
   } finally {
