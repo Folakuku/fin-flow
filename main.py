@@ -70,6 +70,7 @@ async def analyze_stock(request: StockAnalysisRequest):
     :return: Comprehensive financial analysis results
     """
     try:
+        # return request.stock_symbol
         # Perform analysis
         analysis_result = stock_analysis_service.comprehensive_analysis(
             request.stock_symbol,

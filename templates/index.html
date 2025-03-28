@@ -100,7 +100,7 @@
             <form id="input-form" class="custom-form">
                 <div class="mb-3">
                     <label for="stock-select" class="form-label text-white">Select a Stock to Analyze:</label>
-                    <select class="form-control" id="stock-select" required>
+                    <select class="form-control" id="stock-select">
                         <option value="" disabled selected>Select a stock</option>
                         <option value="AAPL">Apple (AAPL)</option>
                         <option value="MSFT">Microsoft (MSFT)</option>
@@ -119,6 +119,10 @@
                         <option value="INTC">Intel (INTC)</option>
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="stock-input" class="form-label text-white">Or Enter a Stock Symbol:</label>
+                    <input type="text" class="form-control" id="stock-input" placeholder="e.g., TSLA">
+                </div>
                 <button type="button" id="submit-btn" class="btn btn-primary">Analyze Report</button>
             </form>
             <div id="loading" class="loading-container" style="display: none;">
@@ -126,6 +130,7 @@
                 <p class="loading-text">Analyzing...</p>
             </div>
         </section>
+
 
 
         <!-- 3D Viewer Section (Hidden - No longer needed for finance) -->

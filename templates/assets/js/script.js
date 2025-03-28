@@ -15,16 +15,22 @@ ScrollReveal().reveal("#finance-reports", { delay: 2000 });
 
 document.getElementById("submit-btn").addEventListener("click", async () => {
   const stockSelect = document.getElementById("stock-select");
+  const stockInput = document.getElementById("stock-input");
   const submitBtn = document.getElementById("submit-btn");
-  const selectedStock = stockSelect.value;
+  const loading = document.getElementById("loading");
 
-  if (!selectedStock) {
-    alert("Please select a stock to analyze.");
+  // Get the selected or typed stock
+  const selectedStock = stockSelect.value.trim();
+  const typedStock = stockInput.value.trim();
+  const stockSymbol = typedStock || selectedStock; // Use typed stock if provided
+
+  if (!stockSymbol) {
+    alert("Please select or enter a stock to analyze.");
     return;
   }
 
   submitBtn.disabled = true;
-  document.getElementById("loading").style.display = "block";
+  loading.style.display = "block";
 
   try {
     const response = await fetch("/analyze-stock", {
@@ -32,7 +38,7 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ stock_symbol: selectedStock }),
+      body: JSON.stringify({ stock_symbol: stockSymbol }),
     });
 
     const data = await response.json();
@@ -40,7 +46,32 @@ document.getElementById("submit-btn").addEventListener("click", async () => {
   } catch (error) {
     console.error("Error analyzing stock:", error);
   } finally {
-    document.getElementById("loading").style.display = "none";
+    // Clear the input field and dropdown selection
+    stockSelect.value = "";
+    stockInput.value = "";
+
+    // Disable the submit button after clearing
+    validateInput();
+
+    // Hide loading and re-enable the button
+    loading.style.display = "none";
     submitBtn.disabled = false;
   }
 });
+
+// Enable/disable submit button based on input
+function validateInput() {
+  const stockSelect = document.getElementById("stock-select");
+  const stockInput = document.getElementById("stock-input");
+  const submitBtn = document.getElementById("submit-btn");
+
+  const selectedStock = stockSelect.value.trim();
+  const typedStock = stockInput.value.trim();
+
+  submitBtn.disabled = !(selectedStock || typedStock);
+}
+
+document
+  .getElementById("stock-select")
+  .addEventListener("change", validateInput);
+document.getElementById("stock-input").addEventListener("input", validateInput);
