@@ -1,0 +1,300 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif; /* CGDream.ai-like font */
+    background-color: #121212; /* Dark gray background */
+    background-image: radial-gradient(circle at center, rgba(108, 99, 255, 0.1), #121212); /* Dusty purple gradient */
+    color: #fff; /* White text */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+main {
+    position: relative;
+    z-index: 2; /* Ensure content is above the video */
+    padding: 20px;
+}
+
+/* Navigation Bar */
+.custom-nav {
+    background-color: #121212; /* Dark gray */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 3;
+    padding: 1rem 0;
+}
+
+.custom-nav .navbar-brand,
+.custom-nav .nav-link {
+    color: #fff;
+    font-weight: 600;
+}
+
+.custom-nav .navbar-brand {
+    font-size: 1.5rem;
+}
+
+.custom-nav .nav-link {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 100px 20px;
+    background: linear-gradient(to right, #1e1e1e, #121212); /* Dark gradient */
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Video Section */
+.video-section {
+    background-color: #1e1e1e; /* Slightly lighter dark gray */
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Input Section */
+.input-section {
+    background-color: #1e1e1e; /* Slightly lighter dark gray */
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.input-section .form-label {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+    background-color: #6c63ff; /* Blue/purple */
+    border-color: #6c63ff;
+}
+
+.btn-primary:hover {
+    background-color: #5a52d4; /* Darker blue/purple */
+    border-color: #5a52d4;
+}
+
+.btn-secondary {
+    background-color: #4a148c; /* Medium purple */
+    border-color: #4a148c;
+}
+
+.btn-secondary:hover {
+    background-color: #3a106e; /* Darker medium purple */
+    border-color: #3a106e;
+}
+
+.btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-light:hover {
+    background-color: #fff;
+    color: #121212;
+}
+
+/* Input Fields */
+.form-control {
+    background-color: #222; /* Darker gray */
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.form-control::placeholder { /* Style the placeholder text */
+    color: #999; /* Lighter gray for placeholder */
+    opacity: 1; /* Ensure full opacity */
+}
+
+.form-control:focus {
+    background-color: #333;
+    color: #fff;
+    border-color: #6c63ff; /* Blue/purple on focus */
+    box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25); /* Blue/purple focus shadow */
+}
+
+/* 3D Canvas */
+#3d-canvas {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #444; /* Dark gray border */
+    border-radius: 10px;
+}
+
+/* Modals */
+.custom-modal {
+    background-color: #222; /* Darker gray */
+    border-radius: 10px;
+    color: #fff;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+    border-color: #444; /* Dark gray border */
+}
+
+.custom-modal .modal-title,
+.custom-modal .form-label {
+    color: #fff;
+}
+
+/* Footer */
+.custom-footer {
+    background-color: #121212; /* Dark gray */
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid #444; /* Dark gray border */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .input-section, #viewer-section {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    #3d-canvas {
+        height: 300px;
+    }
+}
+
+/* Pricing Section */
+.pricing-section {
+    background-color: #1e1e1e; /* Slightly lighter dark gray */
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-card {
+    background-color: #222; /* Darker gray */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.custom-card .card-title {
+    font-weight: 600;
+}
+
+/* Gallery Section */
+.gallery-section {
+    background-color: #1e1e1e; /* Slightly lighter dark gray */
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Challenge and Community Sections */
+.challenge-section,
+.community-section {
+    background-color: #1e1e1e; /* Slightly lighter dark gray */
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Indicator */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+
+.loading-text {
+    color: #fff;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
