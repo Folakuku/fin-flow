@@ -21,7 +21,8 @@ import os
 load_dotenv()
 
 
-def comprehensive_analysis(self, stock_symbol: str, gemini_key: str) -> FinancialAnalysisState:
+def chatbot(state: FinancialAnalysisState):
+    return state
     genai.configure(api_key=gemini_key)
 
     # Fetch and preprocess data
@@ -236,7 +237,15 @@ def create_visualization(state: FinancialAnalysisState):
         return state
 
 
+def _route(state):
+    if state["stock_symbol"] is None:
+        return END
+    else:
+        return "fetch_yahoo_finance_data"
+
+
 graph = StateGraph(FinancialAnalysisState)
+graph.add_node("chatbot", chatbot)
 graph.add_node("fetch_yahoo_finance_data", fetch_yahoo_finance_data)
 graph.add_node("preprocess_data", preprocess_data)
 graph.add_node("scrape_financial_news", scrape_financial_news)
@@ -245,13 +254,15 @@ graph.add_node("generate_report", generate_report)
 graph.add_node("create_visualization", create_visualization)
 
 
+graph.add_conditional_edges("chatbot", _route, {
+                            END: END, "fetch_yahoo_finance_data": "fetch_yahoo_finance_data"})
+graph.add_edge("chatbot", "fetch_yahoo_finance_data")
 graph.add_edge("fetch_yahoo_finance_data", "preprocess_data")
-graph.add_edge("preprocess_data", "generate_predictions")
+graph.add_edge("preprocess_data", "scrape_financial_news")
+graph.add_edge("scrape_financial_news", "generate_predictions")
 graph.add_edge("generate_predictions", "generate_report")
 graph.add_edge("generate_report", "create_visualization")
-graph.add_conditional_edges(
-    "fetch_yahoo_finance_data", "scrape_financial_news")
 graph.add_edge("create_visualization", END)
-graph.add_edge(START, "fetch_yahoo_finance_data")
+graph.add_edge(START, "chatbot")
 
 app = graph.compile()
